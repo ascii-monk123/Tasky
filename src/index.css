@@ -8,8 +8,19 @@ body {
 .ml-2 {
   margin-left: 20px;
 }
-
+.mt-2 {
+  margin-top: 20px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.modal-overlay {
+  pointer-events: none;
+}
+
+@media (max-width: 400px) {
+  .modal {
+    width: 80% !important;
+  }
 }

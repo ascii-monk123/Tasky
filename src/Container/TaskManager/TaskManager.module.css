@@ -1,0 +1,23 @@
+.Task {
+  width: 100%;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.Search {
+  width: 30% !important;
+  margin: 50px auto;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+  .Search {
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .Search {
+    width: 60% !important;
+  }
+}
