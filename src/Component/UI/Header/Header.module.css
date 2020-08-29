@@ -1,0 +1,9 @@
+.Main__brand {
+  font-size: 45px !important;
+}
+
+@media (max-width: 400px) {
+  .Main__brand {
+    font-size: 40px !important;
+  }
+}
