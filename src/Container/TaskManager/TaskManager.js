@@ -50,6 +50,7 @@ class TaskManager extends Component {
                 details={task.description}
                 configs={{
                   id: task.id,
+                  pending: task.pending,
                 }}
                 key={task.id}
               />

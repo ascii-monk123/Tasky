@@ -1,0 +1,14 @@
+.CheckedBtn {
+  color: #777;
+  cursor: pointer;
+}
+.Checked {
+  color: #00b894;
+}
+p {
+  font-size: 12px !important;
+  color: grey !important;
+}
+p.CheckedText {
+  color: #00b894 !important;
+}

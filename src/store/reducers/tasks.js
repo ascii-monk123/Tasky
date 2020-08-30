@@ -37,6 +37,17 @@ const tasks = (state = initialState, action) => {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.eleId),
       };
+    case actionType.CHANGE_STATUS:
+      const newData = state.tasks.filter((task) => task.id === action.eleId);
+      const pendingStatus = !newData[0].pending;
+      const newArr = [...state.tasks];
+      const index = state.tasks.findIndex((task) => task.id === action.eleId);
+      newArr[index].pending = pendingStatus;
+      return {
+        ...state,
+        tasks: newArr,
+      };
+
     default:
       return {
         ...state,
