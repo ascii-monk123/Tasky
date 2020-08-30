@@ -1,0 +1,13 @@
+.DeleteBtn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+  color: rgba(250, 4, 45, 0.5);
+}
+.DeleteBtn:hover {
+  transform: translateY(-3px);
+  color: rgba(250, 4, 45, 1);
+}

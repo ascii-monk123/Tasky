@@ -3,9 +3,9 @@ import Classes from './TaskManager.module.css';
 import Btn from '../../Component/UI/Btn/Btn';
 import Search from '../../Component/Search/Search';
 import ModalCustom from '../../Component/UI/Modal/Modal';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions/actions';
+import Task from '../Task/Task';
 class TaskManager extends Component {
   state = {
     showModal: false,
@@ -42,17 +42,19 @@ class TaskManager extends Component {
           changedTitle={(data) => this.props.titleChangedHandler(data)}
           changedDescription={(data) => this.props.descChangedHandler(data)}
         />
-        <div>
-          {this.props.tsk.map((task) => {
-            return (
-              <div key={task.id}>
-                <p>{task.title}</p>
-                <p>{task.description}</p>
-                <p>{task.date}</p>
-                <p>{task.id}</p>
-              </div>
-            );
-          })}
+        <div className="container">
+          <div className={`row ${Classes.Center__cols}`}>
+            {this.props.tsk.map((task) => (
+              <Task
+                title={task.title}
+                details={task.description}
+                configs={{
+                  id: task.id,
+                }}
+                key={task.id}
+              />
+            ))}
+          </div>
         </div>
       </div>
     );

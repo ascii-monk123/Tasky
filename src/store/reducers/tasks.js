@@ -18,6 +18,7 @@ const tasks = (state = initialState, action) => {
             description: state.currentDescription,
             date: getDateString(),
             id: uniqid(),
+            pending: false,
           },
         ].concat(state.tasks),
       };
@@ -30,6 +31,11 @@ const tasks = (state = initialState, action) => {
       return {
         ...state,
         currentDescription: action.curDesc,
+      };
+    case actionType.DELETE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== action.eleId),
       };
     default:
       return {

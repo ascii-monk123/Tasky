@@ -9,6 +9,10 @@
   margin: 50px auto;
   text-align: center;
 }
+.Center__cols > .col {
+  float: none; /* disable the float */
+  display: inline-block; /* make blocks inline-block */
+}
 
 @media (max-width: 800px) {
   .Search {
