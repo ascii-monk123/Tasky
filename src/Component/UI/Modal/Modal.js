@@ -24,10 +24,17 @@ const ModalCustom = (props) => {
       <div className="container">
         <h3 className="teal-text text-lighten-2 center">Add Task</h3>
         <div className="input-field">
-          <input placeholder="Enter Title" type="text" />
+          <input
+            placeholder="Enter Title"
+            type="text"
+            onChange={(event) => props.changedTitle(event.target.value)}
+          />
         </div>
         <div className="input-field">
-          <textarea className="materialize-textarea"></textarea>
+          <textarea
+            className="materialize-textarea"
+            onChange={(event) => props.changedDescription(event.target.value)}
+          ></textarea>
         </div>
       </div>
       <div className="container center">
@@ -42,7 +49,7 @@ const ModalCustom = (props) => {
         </button>
         <button
           className="waves-effect waves-lighten white-text btn-large center red btn-floating "
-          onClick={props.clicked}
+          onClick={props.closed}
         >
           <i className="material-icons">close</i>
         </button>
