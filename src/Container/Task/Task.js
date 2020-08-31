@@ -6,6 +6,51 @@ import * as actionTypes from '../../store/actions/actions';
 import CheckedBtn from '../../Component/UI/Btn/CheckedBtn/CheckedBtn';
 
 class Task extends Component {
+  state = {
+    title: '',
+    desc: '',
+    showBtn: false,
+    curInput: null,
+  };
+  componentWillMount() {
+    this.setState({
+      title: this.props.title,
+      desc: this.props.details,
+    });
+  }
+  handleChange = (event, type) => {
+    this.setState({
+      showBtn: true,
+    });
+    if (type === 'title') {
+      this.setState({
+        title: event.target.value,
+        curInput: type,
+      });
+    } else if (type === 'description') {
+      this.setState({
+        desc: event.target.value,
+        curInput: type,
+      });
+    }
+  };
+  handleSubmit = (type) => {
+    if (type === 'yes') {
+      this.props.editTaskHandler(
+        this.props.configs.id,
+        this.state.title,
+        this.state.desc
+      );
+    } else {
+      this.setState({
+        title: this.props.title,
+        desc: this.props.details,
+      });
+    }
+    this.setState({
+      showBtn: false,
+    });
+  };
   render() {
     return (
       <div className="col sm12 m6 l4">
@@ -15,19 +60,38 @@ class Task extends Component {
               <textarea
                 type="text"
                 className={`center-text ${Classes.Title}`}
-                defaultValue={this.props.title}
+                value={this.state.title}
                 style={{
                   resize: 'none',
                 }}
+                onChange={(event) => this.handleChange(event, 'title')}
               />
               <textarea
                 type="text"
                 className={`center-text ${Classes.Text}`}
-                defaultValue={this.props.details}
+                value={this.state.desc}
                 style={{
                   resize: 'none',
                 }}
+                onChange={(event) => this.handleChange(event, 'description')}
               />
+              {this.state.showBtn ? (
+                <div>
+                  <p>Save Changes ?</p>
+                  <button
+                    className="btn-small"
+                    onClick={() => this.handleSubmit('yes')}
+                  >
+                    Yes
+                  </button>
+                  <button
+                    className="btn-small red"
+                    onClick={() => this.handleSubmit('no')}
+                  >
+                    No
+                  </button>
+                </div>
+              ) : null}
             </div>
             <CheckedBtn
               checked={this.props.configs.pending}
@@ -52,6 +116,13 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: actionTypes.DELETE_TASK, eleId: id }),
     changedStatusHandler: (id) =>
       dispatch({ type: actionTypes.CHANGE_STATUS, eleId: id }),
+    editTaskHandler: (id, title, description) =>
+      dispatch({
+        type: actionTypes.EDIT_TASK,
+        eleId: id,
+        newTitle: title,
+        newDescription: description,
+      }),
   };
 };
 

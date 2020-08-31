@@ -47,7 +47,22 @@ const tasks = (state = initialState, action) => {
         ...state,
         tasks: newArr,
       };
+      break;
 
+    case actionType.EDIT_TASK:
+      console.log(state.tasks);
+      const newArr2 = [...state.tasks];
+      const ind = state.tasks.findIndex((task) => task.id === action.eleId);
+      newArr2[ind] = {
+        ...newArr2[ind],
+        title: action.newTitle,
+        description: action.newDescription,
+      };
+
+      return {
+        ...state,
+        tasks: newArr2,
+      };
     default:
       return {
         ...state,
