@@ -1,0 +1,31 @@
+textarea.Text {
+  border: none;
+  font-size: 18px;
+  text-align: justify;
+  height: 150px;
+  color: #fff;
+  padding: 10px !important;
+  outline: none;
+}
+textarea.Title {
+  font-size: 40px !important;
+  text-align: center !important;
+  resize: none !important;
+  height: 70px;
+  border: none;
+  display: block !important;
+  margin-bottom: 30px;
+  color: #fff;
+  outline: none;
+  padding: 10px 0 10px 0 !important;
+}
+textarea.Title:focus,
+textarea.Text:focus {
+  border: 2px dashed #fff !important;
+}
+
+@media (max-width: 400px) {
+  textarea.Title {
+    font-size: 40px !important;
+  }
+}

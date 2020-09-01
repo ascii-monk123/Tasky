@@ -42,7 +42,10 @@ const tasks = (state = initialState, action) => {
       const pendingStatus = !newData[0].pending;
       const newArr = [...state.tasks];
       const index = state.tasks.findIndex((task) => task.id === action.eleId);
-      newArr[index].pending = pendingStatus;
+      newArr[index] = {
+        ...newArr[index],
+        pending: !newArr[index].pending,
+      };
       return {
         ...state,
         tasks: newArr,
@@ -50,7 +53,6 @@ const tasks = (state = initialState, action) => {
       break;
 
     case actionType.EDIT_TASK:
-      console.log(state.tasks);
       const newArr2 = [...state.tasks];
       const ind = state.tasks.findIndex((task) => task.id === action.eleId);
       newArr2[ind] = {

@@ -4,6 +4,7 @@ import DeleteBtn from '../../Component/UI/DeleteBtn/DeleteBtn';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions/actions';
 import CheckedBtn from '../../Component/UI/Btn/CheckedBtn/CheckedBtn';
+import InputField from '../../Component/UI/InputField/InputField';
 
 class Task extends Component {
   state = {
@@ -19,9 +20,11 @@ class Task extends Component {
     });
   }
   handleChange = (event, type) => {
-    this.setState({
-      showBtn: true,
-    });
+    if (!this.state.showBtn) {
+      this.setState({
+        showBtn: true,
+      });
+    }
     if (type === 'title') {
       this.setState({
         title: event.target.value,
@@ -57,24 +60,21 @@ class Task extends Component {
         <div className={Classes.Card__Wrapper}>
           <div className="card-panel teal lighten-3 white-text">
             <div className="card-content">
-              <textarea
-                type="text"
-                className={`center-text ${Classes.Title}`}
-                value={this.state.title}
-                style={{
-                  resize: 'none',
+              <InputField
+                data={{
+                  title: this.state.title,
+                  type: 'title',
+                  changed: (event, param) => this.handleChange(event, param),
                 }}
-                onChange={(event) => this.handleChange(event, 'title')}
               />
-              <textarea
-                type="text"
-                className={`center-text ${Classes.Text}`}
-                value={this.state.desc}
-                style={{
-                  resize: 'none',
+              <InputField
+                data={{
+                  title: this.state.desc,
+                  type: 'description',
+                  changed: (event, param) => this.handleChange(event, param),
                 }}
-                onChange={(event) => this.handleChange(event, 'description')}
               />
+
               {this.state.showBtn ? (
                 <div>
                   <p>Save Changes ?</p>
@@ -127,3 +127,26 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(Task);
+
+/**
+ * 
+ * 
+ * <textarea
+                type="text"
+                className={`center-text ${Classes.Title}`}
+                value={this.state.title}
+                style={{
+                  resize: 'none',
+                }}
+                onChange={(event) => this.handleChange(event, 'title')}
+              />
+              <textarea
+                type="text"
+                className={`center-text ${Classes.Text}`}
+                value={this.state.desc}
+                style={{
+                  resize: 'none',
+                }}
+                onChange={(event) => this.handleChange(event, 'description')}
+              />
+ */
