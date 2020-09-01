@@ -1,22 +1,30 @@
 import * as actionType from '../actions/actions';
-import getDateString from '../../Helpers/getDateString';
+import { getDateString, getTString } from '../../Helpers/getDateString';
 import uniqid from 'uniqid';
-const initialState = {
+let initialState = {
   tasks: [],
   currentTitle: '',
   currentDescription: '',
 };
+if (!JSON.parse(localStorage.getItem('task'))) {
+  localStorage.setItem('task', JSON.stringify(initialState));
+} else {
+  initialState = JSON.parse(localStorage.getItem('task'));
+}
 
 const tasks = (state = initialState, action) => {
   switch (action.type) {
     case actionType.ADD_TASK:
+      const d = new Date();
       return {
         ...state,
         tasks: [
           {
             title: state.currentTitle,
             description: state.currentDescription,
-            date: getDateString(),
+            time: getTString(d),
+            date: getDateString(d),
+            sorterDate: d,
             id: uniqid(),
             pending: false,
           },

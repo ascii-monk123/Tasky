@@ -56,7 +56,7 @@ class Task extends Component {
   };
   render() {
     return (
-      <div className="col sm12 m6 l4">
+      <div className="col sm12 m6 l6">
         <div className={Classes.Card__Wrapper}>
           <div className="card-panel teal lighten-3 white-text">
             <div className="card-content">
@@ -99,6 +99,11 @@ class Task extends Component {
                 this.props.changedStatusHandler(this.props.configs.id)
               }
             />
+            <div className={Classes.Date}>
+              <span>{this.props.configs.date}</span>
+              <hr></hr>
+              <span>{this.props.configs.time}</span>
+            </div>
           </div>
 
           <DeleteBtn

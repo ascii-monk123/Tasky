@@ -12,6 +12,12 @@ class TaskManager extends Component {
   state = {
     showModal: false,
   };
+  componentDidMount() {
+    localStorage.setItem('task', JSON.stringify(this.props.st));
+  }
+  componentDidUpdate() {
+    localStorage.setItem('task', JSON.stringify(this.props.st));
+  }
 
   showModalHandler = () => {
     const show = { ...this.state }.showModal;
@@ -58,6 +64,8 @@ class TaskManager extends Component {
                 configs={{
                   id: task.id,
                   pending: task.pending,
+                  time: task.time,
+                  date: task.date,
                 }}
                 key={task.id}
               />
@@ -77,6 +85,7 @@ const mapStateToProps = (state) => {
     description: state.tskR.currentDescription,
     qr: state.filR.query,
     fil: state.filR.filterType,
+    st: state.tskR,
   };
 };
 //mapping dispatch to props

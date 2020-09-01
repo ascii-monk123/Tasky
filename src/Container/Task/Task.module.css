@@ -1,11 +1,18 @@
 .card,
 .card-panel {
   width: 100% !important;
-  height: 700px !important;
+  height: 100px !important;
 }
 .Card__Wrapper {
   position: relative !important;
   width: 100% !important;
+}
+.Date {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 textarea.Text {

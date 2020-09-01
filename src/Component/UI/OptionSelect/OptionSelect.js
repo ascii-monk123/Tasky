@@ -2,8 +2,8 @@ import React from 'react';
 
 const OptionSelect = (props) => (
   <div className={`input-field`}>
-    <select onChange={(event) => props.changed(event.target.value)}>
-      <option value="" disabled selected>
+    <select onChange={(event) => props.changed(event.target.value)} value="">
+      <option value="" disabled>
         Sort By:
       </option>
       <option value="">Default</option>
