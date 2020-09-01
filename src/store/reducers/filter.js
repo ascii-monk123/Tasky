@@ -7,11 +7,16 @@ const initialState = {
 const filter = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SEARCH_TASK:
-      console.log(action.q);
       return {
         ...state,
         query: action.q,
       };
+    case actionTypes.SORT_TASK:
+      return {
+        ...state,
+        filterType: action.filType,
+      };
+
     default:
       return {
         ...state,

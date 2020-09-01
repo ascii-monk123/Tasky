@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions/actions';
 import Task from '../Task/Task';
 import filterArr from '../../Helpers/FilterArr';
+import OptionSelect from '../../Component/UI/OptionSelect/OptionSelect';
 class TaskManager extends Component {
   state = {
     showModal: false,
@@ -35,7 +36,11 @@ class TaskManager extends Component {
           <Btn icon="add" clicked={this.showModalHandler} />
           <div className={Classes.Search}>
             <Search changed={(value) => this.props.searchHandler(value)} />
+            <OptionSelect
+              changed={(value) => this.props.selectHandler(value)}
+            />
           </div>
+          <div className={Classes.Search}></div>
         </div>
         <ModalCustom
           show={this.state.showModal}
@@ -84,6 +89,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: actionTypes.CHANGE_DESC, curDesc: desc }),
     searchHandler: (text) =>
       dispatch({ type: actionTypes.SEARCH_TASK, q: text }),
+    selectHandler: (text) =>
+      dispatch({ type: actionTypes.SORT_TASK, filType: text }),
   };
 };
 

@@ -5,9 +5,12 @@
 }
 
 .Search {
-  width: 30% !important;
+  width: 70% !important;
   margin: 50px auto;
   text-align: center;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .Center__cols > .col {
   float: none; /* disable the float */
@@ -17,11 +20,12 @@
 @media (max-width: 800px) {
   .Search {
     width: 50% !important;
+    flex-direction: column;
   }
 }
 
 @media (max-width: 400px) {
   .Search {
-    width: 60% !important;
+    width: 70% !important;
   }
 }
