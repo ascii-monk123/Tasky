@@ -6,6 +6,7 @@ import ModalCustom from '../../Component/UI/Modal/Modal';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions/actions';
 import Task from '../Task/Task';
+import filterArr from '../../Helpers/FilterArr';
 class TaskManager extends Component {
   state = {
     showModal: false,
@@ -27,12 +28,13 @@ class TaskManager extends Component {
   };
 
   render() {
+    const array = filterArr(this.props.tsk, this.props.fil, this.props.qr);
     return (
       <div className={Classes.Task}>
         <div className="container">
           <Btn icon="add" clicked={this.showModalHandler} />
           <div className={Classes.Search}>
-            <Search />
+            <Search changed={(value) => this.props.searchHandler(value)} />
           </div>
         </div>
         <ModalCustom
@@ -44,7 +46,7 @@ class TaskManager extends Component {
         />
         <div className="container">
           <div className={`row ${Classes.Center__cols}`}>
-            {this.props.tsk.map((task) => (
+            {array.map((task) => (
               <Task
                 title={task.title}
                 details={task.description}
@@ -65,9 +67,11 @@ class TaskManager extends Component {
 //Mapping state to props
 const mapStateToProps = (state) => {
   return {
-    tsk: state.tasks,
-    title: state.currentTitle,
-    description: state.currentDescription,
+    tsk: state.tskR.tasks,
+    title: state.tskR.currentTitle,
+    description: state.tskR.currentDescription,
+    qr: state.filR.query,
+    fil: state.filR.filterType,
   };
 };
 //mapping dispatch to props
@@ -78,6 +82,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: actionTypes.CHANGE_TITLE, curTitle: title }),
     descChangedHandler: (desc) =>
       dispatch({ type: actionTypes.CHANGE_DESC, curDesc: desc }),
+    searchHandler: (text) =>
+      dispatch({ type: actionTypes.SEARCH_TASK, q: text }),
   };
 };
 

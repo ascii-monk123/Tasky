@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import taskReducer from './store/reducers/tasks';
+import filterReducer from './store/reducers/filter';
 import 'materialize-css/dist/css/materialize.min.css';
 
-const store = createStore(taskReducer);
+const rootReducer = combineReducers({
+  tskR: taskReducer,
+  filR: filterReducer,
+});
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <Provider store={store}>

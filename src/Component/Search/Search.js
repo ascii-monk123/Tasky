@@ -7,7 +7,7 @@ const Search = (props) => {
         <input
           id="search"
           type="text"
-          onChange={props.changed}
+          onChange={(event)=>props.changed(event.target.value)}
           placeholder="Search List"
           className="validate"
         />
